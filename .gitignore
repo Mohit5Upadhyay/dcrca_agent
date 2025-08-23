@@ -1,0 +1,29 @@
+# environment & secrets
+.env
+disaster_env/
+.venv/
+
+# Portia local config
+.portia/
+
+# caches and pyc
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Editor/OS
+.vscode/
+.idea/
+.DS_Store
+
+# Test / type-check
+.pytest_cache/
+.mypy_cache/
+
+# Packaging
+build/
+dist/
+*.egg-info/
+
+# Templates (fix name if folder is 'templates')
+templates/
