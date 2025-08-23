@@ -43,6 +43,7 @@ class DispatchResult(BaseModel):
     total_dispatched: int
     summary: str
 
+# CLI based - Human in the loop approval
 def get_human_approval(priority_data: PriorityData) -> ApprovalData:
     if not priority_data or not priority_data.emergencies:
         return ApprovalData(approved_emergencies=[], rejection_notes="No emergencies provided")
@@ -80,9 +81,7 @@ Status: STANDBY"""
     email_body = f"""🚨 URGENT EMERGENCY DISPATCH ALERT 🚨
 ==========================================
 
-📋 HUMAN-VALIDATED EMERGENCIES FOR IMMEDIATE RESPONSE
-
-This dispatch alert contains {len(approval_data.approved_emergencies)} CRITICAL emergency incident(s) that have been human-validated and require immediate response coordination.
+📋 Authority Validated - to take immediate action and sends appropriate teams at critical locations..
 
 📊 DISPATCH SUMMARY:
 - Total Approved Emergencies: {len(approval_data.approved_emergencies)}
@@ -117,15 +116,16 @@ INCIDENT #{i} - {emergency.id}
     email_body += f"""
 ⚡ IMMEDIATE RESPONSE PROTOCOL:
 ==========================================
-1. 🚑 DEPLOY emergency teams to GPS coordinates in priority order
-2. 📞 COORDINATE with local emergency services (911/FDNY/NYPD/EMS)
+1. 🚑 DEPLOY emergency teams to GPS coordinates in higher priority
+2. 📞 COORDINATE with local emergency services (911/FDNY/NYPD/EMS/SDRF/NDRF)
 3. 🗺️ USE provided GPS coordinates for precise navigation
-4. 📋 IMPLEMENT emergency protocols based on incident type
+4. 📋 IMPLEMENT emergency protocols based on incident type - follows SOP to tackle disaster
 5. 📧 REPORT response status and resource needs immediately
 6. ⏰ PRIORITIZE incidents marked as CRITICAL (Priority 4+)
+7. 🔄 CONTINUOUSLY MONITOR situation and adjust response as needed & report all LATEST to aother HIGHER AUTHORITY..
 
 🔍 VALIDATION DETAILS:
-- Human Validator: Emergency Response Coordinator
+- Human Validator: Emergency Response Coordinator 
 - Validation Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S EST')}
 - Data Source: Multi-platform emergency monitoring
 - Verification: All incidents human-reviewed and GPS-verified
@@ -142,9 +142,9 @@ INCIDENT #{i} - {emergency.id}
 {approval_data.rejection_notes}
 
 --- 
-NYC Emergency Response Coordination System
-Human-Supervised AI Emergency Management
-Dispatch Authorization: CONFIRMED ✅"""
+India Emergency Response Coordination System
+Human-Supervised AI Disaster Management
+Dispatch Authorization: ✅ CONFIRMED"""
     
     return email_body
 
@@ -159,7 +159,7 @@ All incidents reviewed - Status: *STANDBY*
 
 Human Review: ✅ *COMPLETED*"""
     
-    slack_message = f"""🚨 *URGENT EMERGENCY DISPATCH ALERT* 🚨
+    slack_message = f"""🚨 *URGENT EMERGENCY DISPATCH ALERT* 🚨 - Slack Community
 
 📋 *{len(approval_data.approved_emergencies)} CRITICAL EMERGENCIES* - Human Validated ✅
 
@@ -193,9 +193,11 @@ Human Review: ✅ *COMPLETED*"""
     slack_message += f"""
 ⚡ *IMMEDIATE RESPONSE REQUIRED*
 1. 🚑 Deploy teams to GPS coordinates
-2. 📞 Coordinate with 911/FDNY/NYPD/EMS  
-3. 🗺️ Use GPS for navigation
+2. 📞 Coordinate with 911/FDNY/NYPD/EMS/SDRF/NDRF
+3. 🗺️ Use GPS for navigation and effective planning
 4. ⏰ Prioritize CRITICAL incidents first
+5. 🔄 Continuously monitor situation and adjust response as needed & report all LATEST to another HIGHER AUTHORITY.
+6. AWAY FROM MIS-INFORMATION | Rely on Official Sources
 
 🕒 *Validation:* {datetime.now().strftime('%Y-%m-%d %H:%M:%S EST')}
 🤖 *System:* Human-Supervised AI Emergency Management
@@ -261,7 +263,7 @@ def create_disaster_plan():
         .invoke_tool_step(
             step_name="emergency_gathering",
             tool="search_tool",
-            args={"search_query": "New York City emergency incidents fire flood medical accident rescue"},
+            args={"search_query": "New York City emergency incidents fire flood medical earthquake building collapse accident rescue"},
             output_schema=EmergencyData
         )
         .llm_step(

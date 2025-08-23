@@ -1,6 +1,7 @@
 # environment & secrets
 .env
 disaster_env/
+venv/
 .venv/
 
 # Portia local config
