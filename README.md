@@ -25,6 +25,24 @@ DCRCA (Disaster Chaos Response Coordination AI Agent) is an intelligent emergenc
 
 This project was developed as part of the AgentHack hackathon, showcasing the power of AI agents in emergency response coordination using the Portia AI framework.
 
+## 📷 Dashboard Screenshots
+
+### 🗺️ Emergency Response Map
+![Emergency Response Map](./imgs/map.png)
+*Real-time map view showing emergency incidents across different locations with priority-based color coding*
+
+### 📋 Pending Emergencies Interface
+![Pending Emergencies](./imgs/pending.png)
+*Human validation interface for reviewing and approving/rejecting emergency incidents*
+
+### ✅ Approved & Rejected Emergencies
+![Approved and Rejected](./imgs/approved.png)
+*Comprehensive view of all processed emergencies with approval status*
+
+### 🚨 Dispatch Center
+![Dispatch Center](./imgs/dispatch.png)
+*Emergency dispatch interface for sending notifications to response teams*
+
 ## ✨ Key Features
 
 ### 🔍 **Intelligent Emergency Detection**
@@ -71,13 +89,33 @@ graph TB
     H --> J[📋 Report Generation]
     I --> J
     J --> K[🚨 Emergency Response Teams]
-    
-    style A fill:#ff9999
-    style B fill:#99ccff
-    style E fill:#ffcc99
-    style G fill:#99ff99
-    style I fill:#cc99ff
-    style K fill:#ff6666
+
+    %% High-contrast classes (dark fills + white text)
+    classDef gather  fill:#1D4ED8,stroke:#0B1020,stroke-width:1.2px,color:#FFFFFF;
+    classDef process fill:#0F766E,stroke:#0B1020,stroke-width:1.2px,color:#FFFFFF;
+    classDef locval  fill:#047857,stroke:#0B1020,stroke-width:1.2px,color:#FFFFFF;
+    classDef prior   fill:#92400E,stroke:#0B1020,stroke-width:1.2px,color:#FFFFFF;
+    classDef human   fill:#B45309,stroke:#0B1020,stroke-width:1.2px,color:#FFFFFF;
+    classDef decide  fill:#334155,stroke:#0B1020,stroke-width:1.2px,color:#FFFFFF;
+    classDef dispatch fill:#15803D,stroke:#0B1020,stroke-width:1.2px,color:#FFFFFF;
+    classDef reject  fill:#7F1D1D,stroke:#0B1020,stroke-width:1.2px,color:#FFFFFF;
+    classDef notify  fill:#6D28D9,stroke:#0B1020,stroke-width:1.2px,color:#FFFFFF;
+    classDef report  fill:#312E81,stroke:#0B1020,stroke-width:1.2px,color:#FFFFFF;
+    classDef respond fill:#B91C1C,stroke:#0B1020,stroke-width:1.2px,color:#FFFFFF;
+
+    %% Apply classes
+    class A gather;
+    class B process;
+    class C locval;
+    class D prior;
+    class E human;
+    class F decide;
+    class G dispatch;
+    class H reject;
+    class I notify;
+    class J report;
+    class K respond;
+
 ```
 
 ## 🔄 Emergency Response Workflow
@@ -177,18 +215,26 @@ flowchart LR
 
 ## 📥 Installation & Setup
 
-### 1️⃣ **Clone the Repository**
+### 1️⃣ **Fork & Clone the Repository**
 ```bash
 git clone https://github.com/yourusername/dcrca-agent.git
 cd dcrca-agent
 ```
 
-### 2️⃣ **Install Dependencies**
+### 2️⃣ **Create virtual environment**
+```bash
+# for windows
+python -m venv venv
+venv\Scripts\Activate  # activate
+deactivate # deactivate venv
+```
+
+### 3️⃣ **Install Dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3️⃣ **Environment Configuration**
+### 4️⃣ **Environment Configuration**
 Create a `.env` file with the following variables:
 
 ```env
@@ -220,7 +266,11 @@ DISPATCH_EMAIL=your-emergency-email@example.com
 
 ### **Run the Emergency Response System**
 ```bash
+# FOR CLI AGENT Running
 python main.py
+
+# FOR UI DASHBOARD
+streamlit run dashboard.py
 ```
 
 ### **Interactive Process Flow**
@@ -407,7 +457,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Mohit Upadhyay**
 
 [![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mohit5upadhyay)
-[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:mu.pqr.123@gmail.com.com)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:upadhyaym7060@gmail.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/mohit5upadhyay)[![Hashnode](https://img.shields.io/badge/HashNode-007?style=for-the-badge&logo=hashnode&logoColor=pink)](https://mohit5upadhyay.hashnode.dev)
 [![Twitter](https://img.shields.io/badge/twitter-100000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/mohit5upadhyay)
 
