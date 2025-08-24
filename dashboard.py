@@ -534,12 +534,14 @@ with tab2:
                 with col2:
                     if st.button(f"✅ Approve", key=f"approve_{i}", use_container_width=True):
                         approve_emergency(emergency)
-                        st.experimental_rerun()
+                        # st.experimental_rerun()
+                        st.rerun()
                     
                     rejection_reason = st.text_input("Rejection reason:", key=f"reason_{i}", placeholder="Required for rejection")
                     if st.button(f"❌ Reject", key=f"reject_{i}", disabled=not rejection_reason, use_container_width=True):
                         reject_emergency(emergency, rejection_reason)
-                        st.experimental_rerun()
+                        # st.experimental_rerun()
+                        st.rerun()
                 
                 st.markdown("---")
 
